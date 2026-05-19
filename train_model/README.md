@@ -25,6 +25,36 @@ python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
+### GPU / CUDA setup
+
+Config mac dinh hien tai dung `device: cuda`, nen training se dung NVIDIA GPU. Neu PyTorch dang la ban CPU-only, chuong trinh se dung lai va bao loi ro rang.
+
+Kiem tra PyTorch co thay GPU khong:
+
+```powershell
+python -c "import torch; print(torch.__version__); print(torch.version.cuda); print(torch.cuda.is_available()); print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'NO CUDA')"
+```
+
+Neu ket qua la `False` hoac version co `+cpu`, cai lai PyTorch CUDA truoc khi cai cac package con lai:
+
+```powershell
+pip uninstall -y torch torchvision
+pip install -r requirements-gpu-cu128.txt
+pip install -r requirements.txt
+```
+
+Train ep GPU:
+
+```powershell
+python train_cnn.py --config config.yaml --device cuda
+```
+
+Neu muon chon GPU cu the:
+
+```powershell
+python train_cnn.py --config config.yaml --device cuda:0
+```
+
 ## Xem tổng quan dataset
 
 ```powershell
