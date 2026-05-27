@@ -49,8 +49,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--mode",
         choices=["cnn", "svm", "both"],
-        default="cnn",
-        help="Evaluate CNN, SVM, or both modes for each deploy folder.",
+        default="both",
+        help="Evaluate CNN, SVM, or both modes for each deploy folder. Default: both.",
     )
     parser.add_argument("--output-dir", default="deploy_eval_results", help="Folder for CSV outputs.")
     parser.add_argument("--device", default=None, help="auto, cpu, cuda, cuda:0, ... Default: deploy config runtime.device.")
@@ -293,4 +293,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
